@@ -2,7 +2,6 @@
 
   <cffunction name="init" access="public" output="false">
     <cfscript>
-      StructDelete(application, "assetBundler", false);
       this.version = "1.1.7,1.1.8"; 
     </cfscript>
     <cfreturn this />
