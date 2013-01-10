@@ -10,6 +10,8 @@
   <cffunction name="encryptProperty" access="public" output="false" returntype="void">
     <cfargument name="property" type="string" required="false" default="" />
     <cfargument name="key" type="string" required="true" />
+    <cfargument name="algo" type="string" required="false" default="AES" />
+    <cfargument name="encoding" type="string" required="false" default="Base64" />
     <cfscript>
       var loc = {};
 
@@ -23,7 +25,7 @@
 
       for (loc.property in listToArray(arguments.properties))
       {
-        variables.wheels.class.encryptproperties[loc.property] = { key = arguments.key };
+        variables.wheels.class.encryptproperties[loc.property] = { key = arguments.key, algo = arguments.algo, encoding = arguments.encoding };
         
         variables.property(name="#loc.property#beforedecrypt", sql=loc.property);
       }
@@ -93,13 +95,17 @@
   <cffunction name="$encrypt" access="public" output="false" returntype="string">
     <cfargument name="value" type="string" required="true" />
     <cfargument name="key" type="string" required="true" />
-    <cfreturn encrypt(arguments.value, arguments.key) />
+    <cfargument name="algo" type="string" required="true" />
+    <cfargument name="encoding" type="string" required="true" />
+    <cfreturn encrypt(arguments.value, arguments.key, arguments.algo, arguments.encoding) />
   </cffunction>
 
   <cffunction name="$decrypt" access="public" output="false" returntype="string">
     <cfargument name="value" type="string" required="true" />
     <cfargument name="key" type="string" required="true" />
-    <cfreturn decrypt(arguments.value, arguments.key) />
+    <cfargument name="algo" type="string" required="true" />
+    <cfargument name="encoding" type="string" required="true" />
+    <cfreturn decrypt(arguments.value, arguments.key, arguments.algo, arguments.encoding) />
   </cffunction>
   
 </cfcomponent>
