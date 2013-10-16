@@ -97,6 +97,9 @@
     <cfargument name="key" type="string" required="true" />
     <cfargument name="algo" type="string" required="true" />
     <cfargument name="encoding" type="string" required="true" />
+    <cfif not len(arguments.value)>
+      <cfreturn "" />
+    </cfif>
     <cfreturn encrypt(arguments.value, arguments.key, arguments.algo, arguments.encoding) />
   </cffunction>
 
@@ -105,6 +108,9 @@
     <cfargument name="key" type="string" required="true" />
     <cfargument name="algo" type="string" required="true" />
     <cfargument name="encoding" type="string" required="true" />
+    <cfif not len(arguments.value)>
+      <cfreturn "" />
+    </cfif>
     <cfreturn decrypt(arguments.value, arguments.key, arguments.algo, arguments.encoding) />
   </cffunction>
   
